@@ -1,0 +1,59 @@
+
+
+{% extends "base.html" %}
+
+	{% block content %}
+	        
+	        <div class="span9">
+	          <p class="lead">Enter an address whose zipcode you want:</p>
+	          <div class="row-fluid">
+	        	<div class="span9">
+	        	  <form class="form-horizontal">
+	  		  	    <fieldset>
+	    			  <div class="control-group">
+	      			    <div class="controls"">
+	      			  	  <input type="text" class="input-xlarge" id="input01" placeholder="Address Line1">
+	      			    </div>
+	      			  </div>
+	      			
+	  			  	  <div class="control-group">
+	      			    <div class="controls">
+	      			  	  <input type="text" class="input-xlarge" id="input02" placeholder="Address Line2">
+	      			    </div>
+	      			  </div>
+	      			
+	      		  	  <div class="control-group">
+	      			    <div class="controls">
+	      			  	  <input type="text" class="input-xlarge" id="input03" placeholder="City">
+	      			    </div>
+	      			  </div>
+	      			
+	      		  	  <div class="control-group">
+	      			    <div class="controls">
+	      			  	  <select class="span2" id="input04">
+	      			  	    <option>CA</option>
+	      			  	    <option>AZ</option>
+	      			  	  </select>
+	      			    </div>
+	      			  </div>
+	      			  
+	      			  <div class="control-group">
+	      			    <div class="controls">
+	      			        <label class="checkbox">
+	      			          <input type="checkbox" value="">This can be only used for USPS
+	      			        </label>
+	      			    </div>
+	      			  </div>
+	      			
+					  <div class="controls">
+					    <button class="btn-large btn-primary" type="submit">Lookup</button>
+					  </div>
+					
+				  </fieldset>  
+				</form>
+		      </div> <!-- span9 -->
+			</div> <!--  row-fluid -->
+		  </div> <!-- span9 -->
+      
+	{% endblock %}
+     

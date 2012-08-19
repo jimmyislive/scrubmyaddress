@@ -1,2 +1,6 @@
 venv
 *.pyc
+/.metadata/*
+.project
+.pydevproject
+
