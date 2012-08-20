@@ -17,9 +17,9 @@ class USPS(object):
         
         #self.output = {}
         
-    def _parse_address(self, address_child, field):
+    def _parse_address(self, child, field):
         try:
-            return str(address_child.find(field).text)
+            return str(child.find(field).text)
         except AttributeError:
             return ''
         
@@ -35,12 +35,22 @@ class USPS(object):
         
         response = urllib.urlopen(url).read()
         
+        print response
+        
         root = et.fromstring(response)
         
-        if root.tag == 'AddressValidateResponse':
-            #everything is ok
-            for address_child in root:
-                id = address_child.attrib['ID']
+        for address_child in root:
+            id = address_child.attrib['ID']
+            
+            error_child = address_child.find('Error')
+            if error_child: 
+                self.contents[id].error = True
+                self.contents[id].error_number = self._parse_address(error_child, 'Number')
+                self.contents[id].error_source = self._parse_address(error_child, 'Source')
+                self.contents[id].error_description = self._parse_address(error_child, 'Description')
+                print 'An error has occurred: number: %s, source: %s, description: %s' % \
+                                        (self.contents[id].error_number, self.contents[id].error_source, self.contents[id].error_description)
+            else:
                 self.contents[id].standardized_address_line1 = self._parse_address(address_child, 'Address1')
                 self.contents[id].standardized_address_line2 = self._parse_address(address_child, 'Address2')
                 self.contents[id].standardized_city = self._parse_address(address_child, 'City')
@@ -72,6 +82,11 @@ class Address(object):
         self.standardized_urbanization = ''
         self.standardized_zip5 = ''
         self.standardized_zip4 = ''
+        
+        self.error = False
+        self.error_number = '' 
+        self.error_source = ''
+        self.error_description = '' 
 
     def create_xml(self):
         #address_ele = et.SubElement(root, 'Address', {'ID': self.id})

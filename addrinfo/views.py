@@ -34,10 +34,9 @@ def addr_std(request):
                     form.cleaned_data['zip4'], 
                     urbanization)
             usps_connector = USPS([addr])
-            result = usps_connector.make_addr_std_request()
+            usps_connector.make_addr_std_request()
             
-            c['address'] = addr
-            #c['standardized_address'] = 
+            c['address'] = addr 
             
             return render_to_response('addr_std_result.html', c)
         else:

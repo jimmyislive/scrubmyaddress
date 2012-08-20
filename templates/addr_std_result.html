@@ -17,7 +17,14 @@
 		        
 		        <div class="span3">
 		          <p class="lead">Standardized address:</p>
-		          <address>{% if address.standardized_address_line1 %} {{ address.standardized_address_line1 }}, {% endif %} {{ address.standardized_address_line2 }}<br>{{ address.standardized_city }} {{ address.standardized_state }} {{ address.standardized_zip5 }} {% if address.standardized_zip4 %} - {{ address.standardized_zip4 }} {% endif %}</address>
+		          {% if address.error %}
+		          	<div class="alert alert-error">
+		          	  <button type="button" class="close" data-dismiss="alert">&times;</button>
+        			  <strong>Sorry something went wrong</strong> {{ address.error_description }}
+        			</div>
+		          {% else %}
+		          	<address>{% if address.standardized_address_line1 %} {{ address.standardized_address_line1 }}, {% endif %} {{ address.standardized_address_line2 }}<br>{{ address.standardized_city }} {{ address.standardized_state }} {{ address.standardized_zip5 }} {% if address.standardized_zip4 %} - {{ address.standardized_zip4 }} {% endif %}</address>
+		          {% endif %}
 		        </div>
 			  </div> <!--  row-fluid -->
 			  

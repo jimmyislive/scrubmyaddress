@@ -19,9 +19,10 @@
 	        	  		</div>
 	        	  	  </div>
 	        	  		
-	    			  <div class="control-group">
+	    			  <div class="control-group {% if form.address_line1.errors %} error {% endif %}">
 	      			    <div class="controls"">
 	      			  	  <input type="text" class="input-xlarge" id="input01" name="address_line1" placeholder="Address Line1">
+	      			  	  <span class="help-inline">{% for error in form.address_line1.errors %} {{ error }} {% endfor %}</span>
 	      			    </div>
 	      			  </div>
 	      			
@@ -32,9 +33,10 @@
 	      			    </div>
 	      			  </div>
 	      			
-	      		  	  <div class="control-group">
+	      		  	  <div class="control-group {% if form.city.errors %} error {% endif %}">
 	      			    <div class="controls">
 	      			  	  <input type="text" class="input-xlarge" id="input03" name="city" placeholder="City">
+	      			  	  <span class="help-inline">{% for error in form.city.errors %} {{ error }} {% endfor %}</span>
 	      			    </div>
 	      			  </div>
 	      			
@@ -111,10 +113,12 @@
 	      			    </div>
 	      			  </div>
 	      			
-	      		  	  <div class="control-group">
+	      		  	  <div class="control-group {% if form.zip5.errors %} error {% endif %}">
 	      			    <div class="controls">
 	      			  	  <input type="text" class="input-small" id="input06" name="zip5" placeholder="Zip Code 5"> - 
 	      			  	  <input type="text" class="input-small" id="input07" name="zip4" placeholder="Zip Code 4">
+	      			  	  <span class="help-inline">{% for error in form.zip5.errors %} {{ error }} {% endfor %}</span>
+	      			  	  <span class="help-inline">{% for error in form.zip4.errors %} {{ error }} {% endfor %}</span>
 	      			    </div>
 	      			  </div>
 	      			  
