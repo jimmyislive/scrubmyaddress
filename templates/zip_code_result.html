@@ -1,0 +1,42 @@
+
+
+{% extends "base.html" %}
+
+	{% block content %}
+	        
+	        <div class="span9">
+	        
+	          <div class="row-fluid">
+	        	<div class="span3">
+	        	  <p class="lead">Your address:</p>
+	        	  <address>{% if address.address_line1 %} {{ address.address_line1 }}, {% endif %}{{ address.address_line2 }}<br>{{ address.city }} {{ address.state }} {% if address.zip5 %} {{ address.zip5 }} {% endif %} {% if address.zip4 %} - {{ address.zip4 }} {% endif %}</address>
+	        	 </div>
+		        
+		        <div class="span3">
+		        </div>
+		        
+		        <div class="span3">
+		          <p class="lead">Address with zipcode:</p>
+		          {% if address.error %}
+		          	<div class="alert alert-error">
+		          	  <button type="button" class="close" data-dismiss="alert">&times;</button>
+        			  <strong>Sorry something went wrong</strong> {{ address.error_description }}
+        			</div>
+		          {% else %}
+		          	<address>{% if address.standardized_address_line1 %} {{ address.standardized_address_line1 }}, {% endif %} {{ address.standardized_address_line2 }}<br>{{ address.standardized_city }} {{ address.standardized_state }} {{ address.standardized_zip5 }} {% if address.standardized_zip4 %} - {{ address.standardized_zip4 }} {% endif %}</address>
+		          {% endif %}
+		        </div>
+			  </div> <!--  row-fluid -->
+			  
+			  <div class="row-fluid">
+	              <div class="span3"></div>
+	              <div class="span3">
+	                <a href="/addr_zip_code/" class="label label-info">Start Over</a>
+	              </div>
+	              <div class="span3"></div>
+	          </div>
+			 </div>
+
+      
+	{% endblock %}
+     

@@ -8,39 +8,123 @@
 	          <p class="lead">Enter an address whose zipcode you want:</p>
 	          <div class="row-fluid">
 	        	<div class="span9">
-	        	  <form class="form-horizontal">
+	        	  <form class="form-horizontal" method="post" action="/addr_zip_code/">
+	        	    {% csrf_token %}
+	        	  	
 	  		  	    <fieldset>
-	    			  <div class="control-group">
+	  		  	    
+	  		  	      <div class="control-group error">
+	  		  	      	<div class="controls">
+	        	  			<span class="help-inline">{% for error in form.non_field_errors %} {{ error }} {% endfor %}</span>
+	        	  		</div>
+	        	  	  </div>
+	        	  	  
+	  		  	      <div class="control-group {% if form.firm_name.errors %} error {% endif %}">
 	      			    <div class="controls"">
-	      			  	  <input type="text" class="input-xlarge" id="input01" placeholder="Address Line1">
+	      			  	  <input type="text" class="input-xlarge" id="input00" name="firm_name" placeholder="Firm Name e.g. XYZ Corp.">
+	      			  	  <span class="help-inline">{% for error in form.firm_name.errors %} {{ error }} {% endfor %}</span>
+	      			    </div>
+	      			  </div>
+	      			  
+	    			  <div class="control-group {% if form.address_line1.errors %} error {% endif %}">
+	      			    <div class="controls"">
+	      			  	  <input type="text" class="input-xlarge" id="input01" name="address_line1" placeholder="Address Line1">
+	      			  	  <span class="help-inline">{% for error in form.address_line1.errors %} {{ error }} {% endfor %}</span>
 	      			    </div>
 	      			  </div>
 	      			
-	  			  	  <div class="control-group">
+	  			  	  <div class="control-group {% if form.address_line2.errors %} error {% endif %}">
 	      			    <div class="controls">
-	      			  	  <input type="text" class="input-xlarge" id="input02" placeholder="Address Line2">
+	      			  	  <input type="text" class="input-xlarge" id="input02" name="address_line2" placeholder="Address Line2">
+	      			  	  <span class="help-inline">{% for error in form.address_line2.errors %} {{ error }} {% endfor %}</span>
+	      			    </div>
+	      			  </div>
+	      			
+	      		  	  <div class="control-group {% if form.city.errors %} error {% endif %}">
+	      			    <div class="controls">
+	      			  	  <input type="text" class="input-xlarge" id="input03" name="city" placeholder="City">
+	      			  	  <span class="help-inline">{% for error in form.city.errors %} {{ error }} {% endfor %}</span>
 	      			    </div>
 	      			  </div>
 	      			
 	      		  	  <div class="control-group">
 	      			    <div class="controls">
-	      			  	  <input type="text" class="input-xlarge" id="input03" placeholder="City">
-	      			    </div>
-	      			  </div>
-	      			
-	      		  	  <div class="control-group">
-	      			    <div class="controls">
-	      			  	  <select class="span2" id="input04">
-	      			  	    <option>CA</option>
-	      			  	    <option>AZ</option>
+	      			  	  <select class="span2" id="input04" name="state">
+	      			  	    <option value="AK">AK</option>
+							<option value="AS">AS</option>
+							<option value="AZ">AZ</option>
+							<option value="AR">AR</option>
+							<option value="CA">CA</option>
+							<option value="CO">CO</option>
+							<option value="CT">CT</option>
+							<option value="DE">DE</option>
+							<option value="DC">DC</option>
+							<option value="FL">FL</option>
+							<option value="GA">GA</option>
+							<option value="GU">GU</option>
+							<option value="HI">HI</option>
+							<option value="ID">ID</option>
+							<option value="IL">IL</option>
+							<option value="IN">IN</option>
+							<option value="IA">IA</option>
+							<option value="KS">KS</option>
+							<option value="KY">KY</option>
+							<option value="LA">LA</option>
+							<option value="ME">ME</option>
+							<option value="MD">MD</option>
+							<option value="MH">MH</option>
+							<option value="MA">MA</option>
+							<option value="MI">MI</option>
+							<option value="FM">FM</option>
+							<option value="MN">MN</option>
+							<option value="MS">MS</option>
+							<option value="MO">MO</option>
+							<option value="MT">MT</option>
+							<option value="NE">NE</option>
+							<option value="NV">NV</option>
+							<option value="NH">NH</option>
+							<option value="NJ">NJ</option>
+							<option value="NM">NM</option>
+							<option value="NY">NY</option>
+							<option value="NC">NC</option>
+							<option value="ND">ND</option>
+							<option value="MP">MP</option>
+							<option value="OH">OH</option>
+							<option value="OK">OK</option>
+							<option value="OR">OR</option>
+							<option value="PW">PW</option>
+							<option value="PA">PA</option>
+							<option value="PR">PR</option>
+							<option value="RI">RI</option>
+							<option value="SC">SC</option>
+							<option value="SD">SD</option>
+							<option value="TN">TN</option>
+							<option value="TX">TX</option>
+							<option value="UT">UT</option>
+							<option value="VT">VT</option>
+							<option value="VA">VA</option>
+							<option value="VI">VI</option>
+							<option value="WA">WA</option>
+							<option value="WV">WV</option>
+							<option value="WI">WI</option>
+							<option value="WY">WY</option>
+	      			  	    
 	      			  	  </select>
 	      			    </div>
 	      			  </div>
 	      			  
 	      			  <div class="control-group">
 	      			    <div class="controls">
+	      			  	  <input type="text" class="input-xlarge" name="urbanization" id="input05" placeholder="Urbanization">
+						  <p class="help-block">For Puerto Rico addresses only</p>
+	      			    </div>
+	      			  </div>
+	      			  
+	      			  <div class="control-group {% if form.usps_check.errors %} error {% endif %}">
+	      			    <div class="controls">
 	      			        <label class="checkbox">
-	      			          <input type="checkbox" value="">I certify that this is being used solely in association with USPS shipping services.
+	      			          <input type="checkbox" name="usps_check">I certify that this is being used solely in association with USPS shipping services.</input>
+	      			          <span class="help-inline">{% for error in form.usps_check.errors %} {{ error }} {% endfor %}</span>
 	      			        </label>
 	      			    </div>
 	      			  </div>

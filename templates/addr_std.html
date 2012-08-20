@@ -18,7 +18,14 @@
 	        	  			<span class="help-inline">{% for error in form.non_field_errors %} {{ error }} {% endfor %}</span>
 	        	  		</div>
 	        	  	  </div>
-	        	  		
+	        	  	  
+	        	  	  <div class="control-group {% if form.firm_name.errors %} error {% endif %}">
+	      			    <div class="controls"">
+	      			  	  <input type="text" class="input-xlarge" id="input00" name="firm_name" placeholder="Firm Name e.g. XYZ Corp.">
+	      			  	  <span class="help-inline">{% for error in form.firm_name.errors %} {{ error }} {% endfor %}</span>
+	      			    </div>
+	      			  </div>
+	      			  
 	    			  <div class="control-group {% if form.address_line1.errors %} error {% endif %}">
 	      			    <div class="controls"">
 	      			  	  <input type="text" class="input-xlarge" id="input01" name="address_line1" placeholder="Address Line1">
