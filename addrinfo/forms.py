@@ -35,6 +35,7 @@ class ZipCodeLookupForm(forms.Form):
 class CityStateForm(forms.Form):
     #00501 is the lowest US zipcode
     zip5 = forms.IntegerField(min_value=500, max_value=99999)
+    usps_check = forms.BooleanField()
 
     
     
