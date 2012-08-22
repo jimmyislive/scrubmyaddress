@@ -45,8 +45,11 @@ class USPS(object):
         root = et.fromstring(response)
         
         for address_child in root:
-            id = address_child.attrib['ID']
-            
+            try:
+                id = address_child.attrib['ID']
+            except KeyError:
+                id = self.contents.keys()[0]
+                
             error_child = address_child.find('Error')
             if error_child: 
                 self.contents[id].error = True
@@ -56,6 +59,7 @@ class USPS(object):
                 print 'An error has occurred: number: %s, source: %s, description: %s' % \
                                         (self.contents[id].error_number, self.contents[id].error_source, self.contents[id].error_description)
             else:
+                
                 self.contents[id].standardized_firm_name = self._parse_address(address_child, 'FirmName')
                 self.contents[id].standardized_address_line1 = self._parse_address(address_child, 'Address1')
                 self.contents[id].standardized_address_line2 = self._parse_address(address_child, 'Address2')
