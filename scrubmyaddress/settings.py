@@ -10,7 +10,7 @@ TESTING_DLL = 'ShippingAPITest.dll'
 PRODUCTION_SERVERNAME = 'production.shippingapis.com'
 PRODUCTION_DLL = 'ShippingAPI.dll'
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (

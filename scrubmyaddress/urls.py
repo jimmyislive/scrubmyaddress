@@ -19,7 +19,6 @@ urlpatterns = patterns('',
 )
 '''
 
-
 urlpatterns = patterns('addrinfo.views', 
                        url(r'^$', 'addr_std'),
                        url(r'^addr_city_state/$', 'city_state_lookup'),
@@ -28,6 +27,6 @@ urlpatterns = patterns('addrinfo.views',
 
 urlpatterns += patterns(r'^static/(?P<path>.*)$', 'django.views.static.serve',
                         #{'document_root': os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'media')}),
-                        {'document_root': '/Users/jjohn/scrubmyaddress/media/'})
+                        {'document_root': os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'media')})
 
 
