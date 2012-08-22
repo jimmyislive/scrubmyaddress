@@ -44,29 +44,36 @@ class USPS(object):
         
         root = et.fromstring(response)
         
-        for address_child in root:
-            try:
+        
+        if root.tag =='Error':
+            id = self.contents.keys()[0]
+            self.contents[id].error = True
+            self.contents[id].error_number = self._parse_address(root, 'Number')
+            self.contents[id].error_source = self._parse_address(root, 'Source')
+            self.contents[id].error_description = self._parse_address(root, 'Description')
+            print 'An error has occurred: number: %s, source: %s, description: %s' % \
+                                    (self.contents[id].error_number, self.contents[id].error_source, self.contents[id].error_description)
+        else:
+            for address_child in root:
                 id = address_child.attrib['ID']
-            except KeyError:
-                id = self.contents.keys()[0]
-                
-            error_child = address_child.find('Error')
-            if error_child: 
-                self.contents[id].error = True
-                self.contents[id].error_number = self._parse_address(error_child, 'Number')
-                self.contents[id].error_source = self._parse_address(error_child, 'Source')
-                self.contents[id].error_description = self._parse_address(error_child, 'Description')
-                print 'An error has occurred: number: %s, source: %s, description: %s' % \
-                                        (self.contents[id].error_number, self.contents[id].error_source, self.contents[id].error_description)
-            else:
-                
-                self.contents[id].standardized_firm_name = self._parse_address(address_child, 'FirmName')
-                self.contents[id].standardized_address_line1 = self._parse_address(address_child, 'Address1')
-                self.contents[id].standardized_address_line2 = self._parse_address(address_child, 'Address2')
-                self.contents[id].standardized_city = self._parse_address(address_child, 'City')
-                self.contents[id].standardized_state = self._parse_address(address_child, 'State')
-                self.contents[id].standardized_zip5 = self._parse_address(address_child, 'Zip5')
-                self.contents[id].standardized_zip4 = self._parse_address(address_child, 'Zip4')
+                    
+                error_child = address_child.find('Error')
+                if error_child: 
+                    self.contents[id].error = True
+                    self.contents[id].error_number = self._parse_address(error_child, 'Number')
+                    self.contents[id].error_source = self._parse_address(error_child, 'Source')
+                    self.contents[id].error_description = self._parse_address(error_child, 'Description')
+                    print 'An error has occurred: number: %s, source: %s, description: %s' % \
+                                            (self.contents[id].error_number, self.contents[id].error_source, self.contents[id].error_description)
+                else:
+                    
+                    self.contents[id].standardized_firm_name = self._parse_address(address_child, 'FirmName')
+                    self.contents[id].standardized_address_line1 = self._parse_address(address_child, 'Address1')
+                    self.contents[id].standardized_address_line2 = self._parse_address(address_child, 'Address2')
+                    self.contents[id].standardized_city = self._parse_address(address_child, 'City')
+                    self.contents[id].standardized_state = self._parse_address(address_child, 'State')
+                    self.contents[id].standardized_zip5 = self._parse_address(address_child, 'Zip5')
+                    self.contents[id].standardized_zip4 = self._parse_address(address_child, 'Zip4')
                 
     def make_addr_std_request(self):
         self._make_base_request('AddressValidateRequest')
