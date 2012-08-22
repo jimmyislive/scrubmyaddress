@@ -6,8 +6,11 @@ DEVELOPMENT = True
 
 USPS_USERNAME = '694TALLT6407'
 TESTING_SERVERNAME = 'testing.shippingapis.com'
+TESTING_DLL = 'ShippingAPITest.dll'
+PRODUCTION_SERVERNAME = 'production.shippingapis.com'
+PRODUCTION_DLL = 'ShippingAPI.dll'
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (

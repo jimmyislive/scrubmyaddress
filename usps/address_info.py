@@ -38,7 +38,7 @@ class USPS(object):
             
         final_xml_data = '<%s USERID="%s">%s</%s>' % (tag, settings.USPS_USERNAME, xml_data, tag)
         
-        url = 'http://%s/ShippingAPITest.dll?API=%s&XML=%s' % (settings.TESTING_SERVERNAME, api,
+        url = 'http://%s/%s?API=%s&XML=%s' % (settings.PRODUCTION_SERVERNAME, settings.PRODUCTION_DLL, api,
                                                                    urllib.quote(final_xml_data))
         response = urllib.urlopen(url).read()
         
