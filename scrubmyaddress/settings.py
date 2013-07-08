@@ -4,7 +4,7 @@ import os
 
 DEVELOPMENT = True
 
-USPS_USERNAME = '694TALLT6407'
+USPS_USERNAME = '<YOUR USPS USERNAME>'
 TESTING_SERVERNAME = 'testing.shippingapis.com'
 TESTING_DLL = 'ShippingAPITest.dll'
 PRODUCTION_SERVERNAME = 'production.shippingapis.com'
