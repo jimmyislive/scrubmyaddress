@@ -5,4 +5,6 @@ You will first need to contact USPS for a USPS username.
 
 The project is hosted on Heroku @ scrubmyaddress.com (as long as I own the domain name)
 
-Screenshots of the finished products are available in the demo dir.
+Screenshots of the finished products: (also available in the demo dir).
+
+![ScreenShot](/demo/img1.png)
